@@ -26,6 +26,7 @@
       "error",
       { "declaration": false, "assignment": false }
     ],
+    "react/jsx-no-useless-fragment": 0,
     "react/jsx-fragments": [1, "element"],
     "react/jsx-curly-brace-presence": 0,
     "react/forbid-prop-types": 0,

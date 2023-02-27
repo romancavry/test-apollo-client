@@ -16,7 +16,7 @@ module.exports = {
   devtool: mode === 'development' ? 'inline-source-map' : undefined,
 
   output: {
-    publicPath: '/'
+    publicPath: '/',
   },
 
   resolve: {
@@ -24,20 +24,25 @@ module.exports = {
     alias: {
       react: path.resolve(__dirname, 'node_modules', 'react'),
       'react-dom': path.resolve(__dirname, 'node_modules', 'react-dom'),
-      '@linaria/react': path.resolve(__dirname, 'node_modules', '@linaria/react'),
+      '@linaria/react': path.resolve(
+        __dirname,
+        'node_modules',
+        '@linaria/react',
+      ),
       '@linaria/core': path.resolve(__dirname, 'node_modules', '@linaria/core'),
       components: path.resolve(__dirname, 'src/components'),
       config: path.resolve(__dirname, 'src/config'),
       core: path.resolve(__dirname, 'src/core'),
       pages: path.resolve(__dirname, 'src/pages'),
       uikit: path.resolve(__dirname, 'src/uikit'),
-      modules: path.resolve(__dirname, 'src/modules')
-    }
+      modules: path.resolve(__dirname, 'src/modules'),
+      app: path.resolve(__dirname, 'src/app'),
+    },
   },
 
   devServer: {
     port: 8080,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
 
   module: {
@@ -46,38 +51,38 @@ module.exports = {
         test: /\.m?js/,
         type: 'javascript/auto',
         resolve: {
-          fullySpecified: false
-        }
+          fullySpecified: false,
+        },
       },
       {
         test: /\.(tsx?|js)$/,
         use: [
           {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
           },
           {
             loader: '@linaria/webpack-loader',
             options: {
-              sourceMap: mode !== 'production'
-            }
-          }
-        ]
+              sourceMap: mode !== 'production',
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader
+            loader: MiniCssExtractPlugin.loader,
           },
           {
             loader: 'css-loader',
             options: {
-              sourceMap: mode !== 'production'
-            }
-          }
-        ]
-      }
-    ]
+              sourceMap: mode !== 'production',
+            },
+          },
+        ],
+      },
+    ],
   },
 
   plugins: [
@@ -91,19 +96,20 @@ module.exports = {
         ...deps,
         react: {
           singleton: true,
-          requiredVersion: deps.react
+          requiredVersion: deps.react,
         },
         'react-dom': {
           singleton: true,
-          requiredVersion: deps['react-dom']
-        }
-      }
+          requiredVersion: deps['react-dom'],
+        },
+      },
     }),
     new HtmlWebPackPlugin({
-      template: './public/index.html'
+      template: './public/index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: mode === 'development' ? 'styles.css' : 'styles-[contenthash].css'
-    })
-  ]
+      filename:
+        mode === 'development' ? 'styles.css' : 'styles-[contenthash].css',
+    }),
+  ],
 };

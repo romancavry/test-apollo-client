@@ -29,6 +29,7 @@
       "modules/*": ["./modules/*"],
       "config/*": ["./config/*"],
       "core/*": ["./core/*"],
+      "app/*": ["./app/*"],
     },
     "typeRoots": ["./types", "./node_modules/@types"]
   },

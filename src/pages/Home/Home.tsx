@@ -1,14 +1,11 @@
 import * as React from 'react';
-import { Outlet } from 'react-router-dom';
-
-import { useAuth } from 'modules/auth/hooks';
+import { Outlet, useLoaderData } from 'react-router-dom';
 
 import { AuthForm, Header } from './components';
 import { AppContainer } from './styled';
 
 const Home = () => {
-  const { isAuth } = useAuth();
-
+  const isAuth = useLoaderData();
   console.log('isAuth: ', isAuth);
 
   return (
