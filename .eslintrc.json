@@ -1,0 +1,67 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "extends": [
+    "@atamore/eslint-config-atamore",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:react-hooks/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true,
+    "jest/globals": true
+  },
+  "rules": {
+    "semi": ["error", "always"],
+    "comma-dangle": [1, "always-multiline"],
+    "camelcase": 0,
+    "no-restricted-syntax": [
+      "error",
+      "ForInStatement",
+      "LabeledStatement",
+      "WithStatement"
+    ],
+    "react/jsx-props-no-spreading": 0,
+    "react/no-danger": 0,
+    "react/jsx-curly-newline": 0,
+    "no-use-before-define": 0,
+    "react/display-name": 0,
+    "react/prop-types": 0,
+    "@typescript-eslint/no-empty-interface": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/ban-ts-comment": 0,
+    "@typescript-eslint/no-empty-function": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "@typescript-eslint/no-non-null-assertion": 0
+  },
+  "plugins": ["react", "react-hooks", "import", "babel", "jest"],
+  "settings": {
+    "import/parser": "babel-eslint",
+    "import/resolve": {
+      "moduleDirectory": ["node_modules", "src"]
+    },
+    "react": {
+      "version": "detect"
+    }
+  },
+  "globals": {
+    "__DEVELOPMENT__": true,
+    "React": true,
+    "PropTypes": true,
+    "shallow": true,
+    "render": true,
+    "mount": true,
+    "shallowWithContext": true,
+    "renderWithContext": true,
+    "mountWithContext": true
+  }
+}

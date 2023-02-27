@@ -1,0 +1,24 @@
+.idea/
+.env
+.tmp
+.vscode
+.DS_Store
+
+webroot/config.*
+
+# webpack cache
+.cache-loader
+.linaria-cache
+
+# dependencies
+/node_modules
+
+# build
+dist
+
+# tests output
+jest-test-results.json
+
+# logs
+yarn-debug.log*
+yarn-error.log*
