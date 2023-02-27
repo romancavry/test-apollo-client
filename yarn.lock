@@ -29,11 +29,6 @@
     tslib "^2.3.0"
     zen-observable-ts "^1.2.5"
 
-"@atamore/eslint-config-atamore@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@atamore/eslint-config-atamore/-/eslint-config-atamore-1.1.0.tgz#5a1c9b153bdaf23a0f83cad528601c0ae67e9069"
-  integrity sha512-T4xBb7CZ5xuEATmQgL4GmbtySF3ELISIwit5bc6MbBS4h/t5QMJHzFmz9kLdFuHFUEOORta6lnL1VwdB3/WxXQ==
-
 "@babel/code-frame@^7.12.13":
   version "7.12.13"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.13.tgz#dcfc826beef65e75c50e21d3837d7d95798dd658"

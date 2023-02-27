@@ -1,8 +1,8 @@
 import type { RouteObject } from 'react-router-dom';
 
-import routes from './routes';
-
 import { Home, Chat } from 'pages';
+
+import routes from './routes';
 
 const routeConfig: RouteObject[] = [
   {
@@ -12,10 +12,10 @@ const routeConfig: RouteObject[] = [
     children: [
       {
         path: routes.chat,
-        ...Chat
-      }
-    ]
-  }
+        ...Chat,
+      },
+    ],
+  },
 ];
 
 export default routeConfig;

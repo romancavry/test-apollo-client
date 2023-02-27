@@ -10,7 +10,7 @@ const Header = () => {
     <div>
       <Link to={routes.chat}>CHAT</Link>
     </div>
-  )
+  );
 };
 
 export default Header;

@@ -6,13 +6,13 @@ import { createClient } from 'graphql-ws';
 import * as API_SETTINGS from 'config';
 
 const httpLink = new HttpLink({
-  uri: API_SETTINGS.fullApiUrl
+  uri: API_SETTINGS.fullApiUrl,
 });
 
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: `ws://${API_SETTINGS.REACT_APP_API_HOST}/${API_SETTINGS.REACT_APP_API_ENDPOINT}`
-  })
+    url: `ws://${API_SETTINGS.REACT_APP_API_HOST}/${API_SETTINGS.REACT_APP_API_ENDPOINT}`,
+  }),
 );
 
 /*
@@ -29,10 +29,13 @@ const wsLink = new GraphQLWsLink(
 const splitLink = split(
   ({ query }) => {
     const definition = getMainDefinition(query);
-    return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
   },
   wsLink,
-  httpLink
+  httpLink,
 );
 
 export default splitLink;

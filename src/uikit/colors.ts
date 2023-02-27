@@ -5,5 +5,5 @@ export default {
   GRAY: '#547980',
   BLACK: '#594f4f',
 
-  BORDER: '#cfd8dc'
+  BORDER: '#cfd8dc',
 };

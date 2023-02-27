@@ -14,5 +14,5 @@ ReactDOM.render(
   <ApolloProvider client={apolloClient}>
     <RouterProvider router={router} />
   </ApolloProvider>,
-  document.getElementById('app')
+  document.getElementById('app'),
 );

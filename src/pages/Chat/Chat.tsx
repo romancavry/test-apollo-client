@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSubscription } from '@apollo/client';
 
-import { NEW_MESSAGE } from "modules/chat";
+import { NEW_MESSAGE } from 'modules/chat';
 import type { Message as MessageType } from 'modules/chat';
 
 import { Message, Input } from './components';
@@ -15,13 +15,13 @@ const Chat = () => {
   return (
     <Wrapper>
       {data ? (
-        <>
+        <React.Fragment>
           {data.messages.map((message: MessageType) => (
             <Message key={message.id} content={message.content} />
           ))}
 
           <Input />
-        </>
+        </React.Fragment>
       ) : (
         <p>Loading...</p> // TODO: loader
       )}

@@ -28,15 +28,17 @@ const Input: React.FC = () => {
     postMessage({
       variables: {
         user,
-        content: value
-      }
+        content: value,
+      },
     });
   };
 
   return (
     <div>
       <input value={value} onChange={onInputChange} />
-      <button onClick={onSend}>SEND</button>
+      <button onClick={onSend} type='button'>
+        SEND
+      </button>
     </div>
   );
 };

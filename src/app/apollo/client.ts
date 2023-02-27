@@ -7,7 +7,7 @@ import splitLink from './ws';
 const client = new ApolloClient({
   link: splitLink,
   uri: fullApiUrl,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
 export default client;
