@@ -24,7 +24,16 @@ const AuthForm = () => {
       <div>
         <label>
           Login
-          <input value={values.login} onChange={onChangeInput} />
+          <input value={values.login} onChange={onChangeInput} name='login' />
+        </label>
+
+        <label>
+          Password
+          <input
+            value={values.password}
+            onChange={onChangeInput}
+            name='password'
+          />
         </label>
       </div>
     </Wrapper>
