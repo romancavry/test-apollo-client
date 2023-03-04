@@ -1,5 +1,6 @@
 export interface Message {
   id: number;
-  user: string;
-  content: string;
+  text: string;
+  createdAt: string;
+  dialogueId: number;
 }

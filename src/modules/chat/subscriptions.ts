@@ -1,11 +1,12 @@
 import { gql } from '@apollo/client';
 
-export const NEW_MESSAGE = gql`
-  subscription OnNewMessage {
+export const MESSAGES = gql`
+  subscription messages {
     messages {
       id
-      content
-      user
+      text
+      createdAt
+      dialogueId
     }
   }
 `;

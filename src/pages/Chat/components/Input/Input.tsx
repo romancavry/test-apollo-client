@@ -1,17 +1,9 @@
 import * as React from 'react';
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 
-const POST_MESSAGE = gql`
-  mutation ($user: String!, $content: String!) {
-    postMessage(user: $user, content: $content)
-  }
-`;
+import { POST_MESSAGE } from 'modules/chat';
 
 const Input: React.FC = () => {
-  console.log('input render');
-
-  const user = 'Roman'; // temp
-
   const [postMessage] = useMutation(POST_MESSAGE);
 
   const [value, setValue] = React.useState('');
@@ -27,10 +19,11 @@ const Input: React.FC = () => {
 
     postMessage({
       variables: {
-        user,
-        content: value,
+        text: value,
       },
     });
+
+    setValue('');
   };
 
   return (
