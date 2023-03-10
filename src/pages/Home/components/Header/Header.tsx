@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 
 import routes from 'core/routes';
 
+// eslint-disable-next-line arrow-body-style
 const Header = () => {
-  console.log('Header');
-
   return (
     <div>
       <Link to={routes.chat}>CHAT</Link>
