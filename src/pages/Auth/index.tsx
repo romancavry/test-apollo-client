@@ -1,10 +1,10 @@
 import * as React from 'react';
 import type { NonIndexRouteObject } from 'react-router-dom';
 
-import Home from './Home';
+import Auth from './Auth';
 
 const definition: NonIndexRouteObject = {
-  element: <Home />,
+  element: <Auth />,
 };
 
 export default definition;

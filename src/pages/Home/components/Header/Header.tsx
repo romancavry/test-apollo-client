@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-import routes from 'core/routes';
+import routes from 'core/routesPaths';
 
 // eslint-disable-next-line arrow-body-style
 const Header = () => {

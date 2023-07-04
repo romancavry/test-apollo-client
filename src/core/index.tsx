@@ -1,18 +1,26 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/client';
 
-import apolloClient from '../app/apollo/client';
+import apolloClient from 'app/apollo/client';
 
+import { AuthProvider } from 'modules/auth/provider';
+
+import { authorizedOnly, publicRoutes, unauthorizedOnly } from './routes';
 import './index.css';
-import routeConfig from './routeConfig';
 
-const router = createBrowserRouter(routeConfig);
+const router = createBrowserRouter([
+  ...publicRoutes,
+  ...unauthorizedOnly,
+  ...authorizedOnly,
+]);
 
 ReactDOM.render(
   <ApolloProvider client={apolloClient}>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </ApolloProvider>,
   document.getElementById('app'),
 );
