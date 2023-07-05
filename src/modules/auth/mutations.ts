@@ -8,6 +8,8 @@ export const SIGNUP = gql`
         id
         name
         email
+        dialoguesIds
+        createdAt
       }
     }
   }
@@ -21,6 +23,8 @@ export const LOGIN = gql`
         id
         name
         email
+        dialoguesIds
+        createdAt
       }
     }
   }

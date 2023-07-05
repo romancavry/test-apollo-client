@@ -6,17 +6,7 @@ export const GET_USER = gql`
       id
       name
       email
-      sentMessages {
-        id
-        text
-        senderId
-        dialogueId
-        createdAt
-      }
-      dialogues {
-        id
-        name
-      }
+      dialoguesIds
       createdAt
     }
   }

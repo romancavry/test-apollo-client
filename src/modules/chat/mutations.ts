@@ -5,3 +5,9 @@ export const POST_MESSAGE = gql`
     postMessage(text: $text)
   }
 `;
+
+export const CREATE_DIALOGUE = gql`
+  mutation createDialogue($name: String!) {
+    createDialogue(name: $name)
+  }
+`;

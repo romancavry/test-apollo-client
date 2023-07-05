@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { Login } from './components';
+import { Login, Register } from './components';
 import { Container } from './styled';
 
 const AuthForm = () => (
   <Container>
     <Login />
-    {/* <Register /> */}
+    <Register />
   </Container>
 );
 

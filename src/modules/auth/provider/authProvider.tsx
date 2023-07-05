@@ -15,7 +15,6 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [getApiUser] = useLazyQuery(GET_USER);
 
   const isAuth = React.useRef(false);
-  console.log('isAuth: ', isAuth.current);
 
   const [user, _setUser] = React.useState<User | null>(null);
   const [userLoading, setUserLoading] = React.useState(true);

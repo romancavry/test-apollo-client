@@ -1,16 +1,15 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useMutation, useLazyQuery } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 
 import { LOGIN } from 'modules/auth/mutations';
-import { GET_USER, saveToken } from 'modules/auth';
+import { saveToken } from 'modules/auth';
 import { useAuth } from 'modules/auth/hooks';
 
 import { Wrapper } from '../../styled';
 
 const Login = () => {
   const [login] = useMutation(LOGIN);
-  const [getUser] = useLazyQuery(GET_USER);
 
   const navigate = useNavigate();
 
@@ -47,23 +46,19 @@ const Login = () => {
 
       const {
         data: {
-          login: { token },
+          login: { token, user },
         },
       } = result;
 
       saveToken(token);
-      const {
-        data: { getUser: userData },
-      } = await getUser();
-
-      setUser(userData);
+      setUser(user);
 
       navigate('/chat', { replace: true });
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log('Login onSubmit err: ', err);
     }
-  }, [getUser, login, navigate, setUser, values]);
+  }, [login, navigate, setUser, values]);
 
   return (
     <Wrapper>

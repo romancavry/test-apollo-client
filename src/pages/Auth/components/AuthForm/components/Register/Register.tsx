@@ -1,18 +1,24 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 import { SIGNUP } from 'modules/auth/mutations';
 import { saveToken } from 'modules/auth';
+import { useAuth } from 'modules/auth/hooks';
 
 import { Wrapper } from '../../styled';
 
 const Register = () => {
   const [signup] = useMutation(SIGNUP);
 
+  const navigate = useNavigate();
+
+  const { setUser } = useAuth();
+
   const [values, setValues] = React.useState({
-    name: 'sdfs',
-    email: 'sdfs',
-    password: 'sdfs',
+    name: '',
+    email: '',
+    password: '',
   });
 
   const onChangeInput = React.useCallback(
@@ -41,16 +47,19 @@ const Register = () => {
 
       const {
         data: {
-          signup: { token },
+          signup: { token, user },
         },
       } = result;
 
-      console.log('Register token: ', token);
       saveToken(token);
+      setUser(user);
+
+      navigate('/chat', { replace: true });
     } catch (err) {
-      console.log('Register err: ', err);
+      // eslint-disable-next-line no-console
+      console.log('Register onSubmit err: ', err);
     }
-  }, [signup, values]);
+  }, [navigate, setUser, signup, values]);
 
   return (
     <Wrapper>
@@ -76,7 +85,7 @@ const Register = () => {
       </label>
 
       <button type='button' onClick={onSubmit}>
-        Login
+        Register
       </button>
     </Wrapper>
   );
