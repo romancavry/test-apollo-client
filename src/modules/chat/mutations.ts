@@ -11,3 +11,15 @@ export const CREATE_DIALOGUE = gql`
     createDialogue(name: $name)
   }
 `;
+
+export const GET_DIALOGUES = gql`
+  mutation getDialogues($ids: [Int]!) {
+    getDialogues(ids: $ids) {
+      id
+      name
+      usersIds
+      messagesIds
+      createdAt
+    }
+  }
+`;

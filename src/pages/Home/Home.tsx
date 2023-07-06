@@ -1,14 +1,19 @@
 import * as React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
-import { Header } from './components';
-import { AppContainer } from './styled';
+import { AppContainer } from 'components/App';
+
+import { Header, Hero } from './components';
 
 const Home = () => (
   <AppContainer>
+    <Helmet>
+      <title>Folto. Home</title>
+    </Helmet>
+
     <Header />
-    HOME
-    <Outlet />
+
+    <Hero />
   </AppContainer>
 );
 
