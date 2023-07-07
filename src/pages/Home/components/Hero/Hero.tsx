@@ -1,11 +1,15 @@
 import * as React from 'react';
 
-import { Wrapper } from './styled';
+import { HomeSection } from 'pages/Home/components';
+
+import { Wrapper, Title } from './styled';
 
 const Hero = () => (
-  <Wrapper>
-    <p>Hero</p>
-  </Wrapper>
+  <HomeSection data-light>
+    <Wrapper>
+      <Title>Folto. The simpliest chat app.</Title>
+    </Wrapper>
+  </HomeSection>
 );
 
 export default Hero;

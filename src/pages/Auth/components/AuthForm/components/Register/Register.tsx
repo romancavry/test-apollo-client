@@ -2,6 +2,8 @@ import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
+import routes from 'core/routesPaths';
+
 import { SIGNUP } from 'modules/auth/mutations';
 import { saveToken } from 'modules/auth';
 import { useAuth } from 'modules/auth/hooks';
@@ -54,7 +56,7 @@ const Register = () => {
       saveToken(token);
       setUser(user);
 
-      navigate('/chat', { replace: true });
+      navigate(routes.chat, { replace: true });
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log('Register onSubmit err: ', err);

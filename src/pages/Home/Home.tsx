@@ -1,20 +1,18 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
 
-import { AppContainer } from 'components/App';
-
 import { Header, Hero } from './components';
+import { Wrapper } from './styled';
 
 const Home = () => (
-  <AppContainer>
+  <Wrapper>
     <Helmet>
       <title>Folto. Home</title>
     </Helmet>
 
     <Header />
-
     <Hero />
-  </AppContainer>
+  </Wrapper>
 );
 
 export default Home;

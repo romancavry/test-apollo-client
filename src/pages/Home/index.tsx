@@ -1,9 +1,9 @@
 import * as React from 'react';
-import type { NonIndexRouteObject } from 'react-router-dom';
+import type { RouteProps } from 'react-router-dom';
 
 import Home from './Home';
 
-const definition: NonIndexRouteObject = {
+const definition: RouteProps = {
   element: <Home />,
 };
 

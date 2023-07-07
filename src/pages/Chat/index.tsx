@@ -1,9 +1,9 @@
 import * as React from 'react';
-import type { RouteObject } from 'react-router-dom';
+import type { RouteProps } from 'react-router-dom';
 
 import Chat from './Chat';
 
-const definition: RouteObject = {
+const definition: RouteProps = {
   element: <Chat />,
 };
 

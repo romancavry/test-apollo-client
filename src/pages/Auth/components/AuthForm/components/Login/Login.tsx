@@ -2,6 +2,8 @@ import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
+import routes from 'core/routesPaths';
+
 import { LOGIN } from 'modules/auth/mutations';
 import { saveToken } from 'modules/auth';
 import { useAuth } from 'modules/auth/hooks';
@@ -53,7 +55,7 @@ const Login = () => {
       saveToken(token);
       setUser(user);
 
-      navigate('/chat', { replace: true });
+      navigate(routes.chat, { replace: true });
     } catch (err) {
       // eslint-disable-next-line no-console
       console.log('Login onSubmit err: ', err);
