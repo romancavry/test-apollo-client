@@ -12,10 +12,5 @@ export default css`
   ${COLOR.WHITE}: #FFFFFF;
   ${COLOR.BLACK}: #000000;
 
-  ${COLOR.INFO}: #2094F0;
-  ${COLOR.ALERT}: #FFC107;
-  ${COLOR.SUCCESS}: #4AB34F;
-  ${COLOR.ERROR}: #F55252;
-
   ${TRANSITION.MAIN}: 0.2s ease-in-out;
 `;

@@ -1,10 +1,11 @@
 import * as React from 'react';
-import type { RouteProps } from 'react-router-dom';
+import type { IndexRouteProps } from 'react-router-dom';
 
 import Auth from './Auth';
 
-const definition: RouteProps = {
+const definition: IndexRouteProps = {
   element: <Auth />,
+  index: true,
 };
 
 export default definition;

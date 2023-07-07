@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 
 import routes from 'core/routesPaths';
 
-import { Auth, Chat, Home } from 'pages';
+import { Auth, Base, Chat, Home } from 'pages';
 
 import { AuthorizedOnlyRoute } from 'components/AuthorizedOnlyRoute';
 import { UnauthorizedOnlyRoute } from 'components/UnauthorizedOnlyRoute';
@@ -21,14 +21,16 @@ const App = () => (
 
     <BrowserRouter>
       <RouterRoutes>
-        <Route path={routes.home} {...Home} />
+        <Route {...Base}>
+          <Route path={routes.home} {...Home} />
 
-        <Route element={<UnauthorizedOnlyRoute />}>
-          <Route path={routes.auth} {...Auth} />
-        </Route>
+          <Route element={<UnauthorizedOnlyRoute />}>
+            <Route path={routes.auth} {...Auth} />
+          </Route>
 
-        <Route element={<AuthorizedOnlyRoute />}>
-          <Route path={routes.chat} {...Chat} />
+          <Route element={<AuthorizedOnlyRoute />}>
+            <Route path={routes.chat} {...Chat} />
+          </Route>
         </Route>
       </RouterRoutes>
     </BrowserRouter>

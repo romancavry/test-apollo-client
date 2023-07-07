@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useMutation } from '@apollo/client';
+import { Helmet } from 'react-helmet';
 
 import { useAuth } from 'modules/auth/hooks';
 import { CREATE_DIALOGUE, GET_DIALOGUES } from 'modules/chat';
@@ -38,6 +39,10 @@ const Chat = () => {
 
   return (
     <Wrapper>
+      <Helmet>
+        <title>Folto. Chat</title>
+      </Helmet>
+
       <button
         type='button'
         onClick={() => createDialogue({ variables: { name: 'asdfboba' } })}

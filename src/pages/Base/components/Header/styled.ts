@@ -1,7 +1,18 @@
 import { styled } from '@linaria/react';
-import { Link as _Link } from 'react-router-dom';
+import { NavLink as _NavLink } from 'react-router-dom';
 
 import { COLOR, MEDIA, TEXT, TRANSITION } from 'uikit/vars';
+
+export const HeaderSection = styled.header`
+  padding: 20px;
+
+  background: var(${COLOR.BG});
+  border: 1px solid var(${COLOR.BORDER});
+
+  @media (min-width: ${MEDIA.TABLET_1}) {
+    padding: 30px;
+  }
+`;
 
 export const Navigation = styled.nav``;
 
@@ -17,7 +28,8 @@ export const List = styled.ul`
 
 export const Item = styled.li``;
 
-export const Link = styled(_Link)`
+// @ts-ignore
+export const NavLink = styled(_NavLink)`
   ${TEXT.MAIN_BOLD};
   color: var(${COLOR.LINK});
   text-transform: uppercase;
@@ -26,5 +38,9 @@ export const Link = styled(_Link)`
 
   &:hover {
     opacity: 0.5;
+  }
+
+  &[aria-current] {
+    color: var(${COLOR.MAIN});
   }
 `;
