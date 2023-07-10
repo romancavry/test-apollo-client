@@ -31,7 +31,7 @@ export const Item = styled.li``;
 // @ts-ignore
 export const NavLink = styled(_NavLink)`
   ${TEXT.MAIN_BOLD};
-  color: var(${COLOR.LINK});
+  color: var(${COLOR.ACCENT});
   text-transform: uppercase;
 
   transition: var(${TRANSITION.MAIN});
