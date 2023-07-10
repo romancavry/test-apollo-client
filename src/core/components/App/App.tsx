@@ -1,17 +1,40 @@
 import * as React from 'react';
-import { BrowserRouter, Routes as RouterRoutes, Route } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
 import routes from 'core/routesPaths';
 
-import { Auth, Base, Chat, Home } from 'pages';
+import { Base, Home } from 'pages';
 
 import { AuthorizedOnlyRoute } from 'components/AuthorizedOnlyRoute';
 import { UnauthorizedOnlyRoute } from 'components/UnauthorizedOnlyRoute';
 
 import { globals, variables } from 'uikit/theme';
 
+import unauthorizedOnly from './unauthorizedOnly';
+import authorizedOnly from './authorizedOnly';
+
 import { AppContainer } from './styled';
+
+const router = createBrowserRouter([
+  {
+    ...Base,
+    children: [
+      {
+        path: routes.home,
+        ...Home,
+      },
+      {
+        element: <UnauthorizedOnlyRoute />,
+        children: unauthorizedOnly,
+      },
+      {
+        element: <AuthorizedOnlyRoute />,
+        children: authorizedOnly,
+      },
+    ],
+  },
+]);
 
 const App = () => (
   <AppContainer>
@@ -19,21 +42,7 @@ const App = () => (
       <body className={`${globals} ${variables}`} />
     </Helmet>
 
-    <BrowserRouter>
-      <RouterRoutes>
-        <Route {...Base}>
-          <Route path={routes.home} {...Home} />
-
-          <Route element={<UnauthorizedOnlyRoute />}>
-            <Route path={routes.auth} {...Auth} />
-          </Route>
-
-          <Route element={<AuthorizedOnlyRoute />}>
-            <Route path={routes.chat} {...Chat} />
-          </Route>
-        </Route>
-      </RouterRoutes>
-    </BrowserRouter>
+    <RouterProvider router={router} />
   </AppContainer>
 );
 
