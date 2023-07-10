@@ -4,15 +4,11 @@ import { ApolloProvider } from '@apollo/client';
 
 import apolloClient from 'app/apollo/client';
 
-import { AuthProvider } from 'modules/auth/provider';
-
 import { App } from './components';
 
 ReactDOM.render(
   <ApolloProvider client={apolloClient}>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <App />
   </ApolloProvider>,
   document.getElementById('app'),
 );
