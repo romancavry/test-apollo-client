@@ -1,5 +1,7 @@
 import { styled } from '@linaria/react';
 
+import { HEADER_HEIGHT } from 'modules/ui';
+
 import { HomeSection as _HomeSection } from 'pages/Home/components';
 
 import { COLOR, MEDIA, TEXT } from 'uikit/vars';
@@ -25,10 +27,13 @@ export const Inner = styled.div`
 `;
 
 export const Dialogues = styled.div`
+  overflow-y: auto;
+
   display: flex;
   flex-direction: column;
   gap: 15px;
   padding: 15px;
+  height: calc(100vh - (${HEADER_HEIGHT}px + 5px));
 
   border-right: 1px solid var(${COLOR.BORDER});
 `;

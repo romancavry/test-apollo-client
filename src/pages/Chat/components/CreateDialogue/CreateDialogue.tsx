@@ -1,24 +1,47 @@
 import * as React from 'react';
 import { useMutation } from '@apollo/client';
 
-import { CREATE_DIALOGUE } from 'modules/chat';
+import { CREATE_DIALOGUE } from 'modules/dialogues';
 
-import { Button } from './styled';
+import { Input } from 'uikit/atoms';
+
+import { Wrapper, Button } from './styled';
 
 const CreateDialogue = () => {
-  const [createDialogue] = useMutation(CREATE_DIALOGUE);
+  const [createDialogue] = useMutation(CREATE_DIALOGUE, {
+    refetchQueries: ['getDialogues'],
+  });
+
+  const [dialogueName, setDialogueName] = React.useState('');
+
+  const onChangeDialogueName = React.useCallback((e: React.ChangeEvent) => {
+    const {
+      target: { value },
+    } = e as React.ChangeEvent<HTMLInputElement>;
+
+    setDialogueName(value);
+  }, []);
+
+  const onCreateDialogue = React.useCallback(async () => {
+    await createDialogue({
+      variables: { name: dialogueName },
+    });
+
+    setDialogueName('');
+  }, [createDialogue, dialogueName]);
 
   return (
-    <div>
-      <p>CreateDialogue</p>
+    <Wrapper>
+      <Input value={dialogueName} onChange={onChangeDialogueName} />
 
       <Button
         variant='primary'
-        onClick={() => createDialogue({ variables: { name: 'asdfboba' } })}
+        onClick={onCreateDialogue}
+        disabled={!dialogueName}
       >
         Create dialogue
       </Button>
-    </div>
+    </Wrapper>
   );
 };
 

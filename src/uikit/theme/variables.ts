@@ -10,6 +10,7 @@ export default css`
 
   ${COLOR.BG}: #F8F9FA;
   ${COLOR.BORDER}: #CFD8DC;
+  ${COLOR.ERROR}: #F55252;
 
   ${COLOR.WHITE}: #FFFFFF;
   ${COLOR.BLACK}: #000000;

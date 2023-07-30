@@ -3,10 +3,10 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 import routes from 'core/routesPaths';
 
-import { getUser } from 'modules/auth/selectors';
+import { getCachedUser } from 'modules/auth/cache';
 
 const AuthorizedOnlyRoute = () => {
-  const user = getUser();
+  const user = getCachedUser();
 
   if (!user) {
     return <Navigate to={routes.auth} />;

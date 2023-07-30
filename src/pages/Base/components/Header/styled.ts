@@ -1,9 +1,12 @@
 import { styled } from '@linaria/react';
 import { NavLink as _NavLink } from 'react-router-dom';
 
+import { HEADER_HEIGHT } from 'modules/ui';
+
 import { COLOR, MEDIA, TEXT, TRANSITION } from 'uikit/vars';
 
 export const HeaderSection = styled.header`
+  height: ${HEADER_HEIGHT}px;
   padding: 20px;
 
   background: var(${COLOR.BG});

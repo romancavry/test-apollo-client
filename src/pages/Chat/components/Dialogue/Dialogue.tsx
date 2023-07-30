@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { Dialogue as DialogueType } from 'modules/chat';
+import type { Dialogue as DialogueType } from 'modules/dialogues';
 
 import { Wrapper, Initials, Text } from './styled';
 

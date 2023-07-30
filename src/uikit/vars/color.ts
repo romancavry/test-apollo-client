@@ -6,6 +6,7 @@ export default {
 
   BG: '--color-bg',
   BORDER: '--color-border',
+  ERROR: '--color-error',
 
   WHITE: '--color-white',
   BLACK: '--color-black',

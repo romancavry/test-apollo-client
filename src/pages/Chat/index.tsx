@@ -6,8 +6,8 @@ import routes from 'core/routesPaths';
 
 import client from 'app/apollo/client';
 
-import { GET_DIALOGUES } from 'modules/chat';
-import { getUser } from 'modules/auth/selectors';
+import { GET_DIALOGUES } from 'modules/dialogues';
+import { getCachedUser } from 'modules/auth/cache';
 
 import Chat from './Chat';
 
@@ -15,22 +15,17 @@ const definition: IndexRouteProps = {
   element: <Chat />,
   index: true,
   loader: async () => {
-    const user = getUser();
+    const user = getCachedUser();
 
     if (!user) {
-      return redirect(routes.home);
+      return redirect(routes.auth);
     }
 
-    const {
-      data: { getDialogues: dialogues },
-    } = await client.mutate({
-      mutation: GET_DIALOGUES,
-      variables: {
-        ids: user!.dialoguesIds,
-      },
+    await client.query({
+      query: GET_DIALOGUES,
     });
 
-    return dialogues || [];
+    return [];
   },
 };
 

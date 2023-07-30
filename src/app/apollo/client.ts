@@ -22,6 +22,7 @@ const client = new ApolloClient({
   link: authLink.concat(splitLink),
   uri: fullApiUrl,
   cache: new InMemoryCache(),
+  connectToDevTools: true,
 });
 
 export default client;
