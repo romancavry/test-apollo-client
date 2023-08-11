@@ -11,7 +11,7 @@ import { NoData } from 'components/NoData';
 
 import { Loading } from 'uikit/atoms';
 
-import { CreateDialogue, Dialogue, Input, Message } from './components';
+import { CreateDialogue, Dialogue, Sender, Message } from './components';
 import {
   HomeSection,
   Inner,
@@ -22,33 +22,35 @@ import {
 } from './styled';
 
 const Chat = () => {
-  const { data: messagesSubscriptionData } = useSubscription(
-    MESSAGES_SUBSCRIPTION,
-  );
-  console.log('messagesSubscriptionData: ', messagesSubscriptionData);
-
+  // Dialogues
   const { data: getDialoguesData } = useQuery(GET_DIALOGUES, {
     fetchPolicy: 'cache-only',
   });
   const dialogues = getDialoguesData?.getDialogues ?? [];
-  // console.log('dialogues: ', dialogues);
-
-  const [getApiMessages, { called, loading, data: getMessagesData }] =
-    useLazyQuery(GET_MESSAGES);
-  const messages = getMessagesData?.getMessages ?? [];
-  // console.log('messages: ', messages);
 
   const [activeDialogueId, setActiveDialogueId] = React.useState<number | null>(
     null,
   );
 
+  // Messages
+  const { data: messagesSubscriptionData } = useSubscription(
+    MESSAGES_SUBSCRIPTION,
+  );
+  console.log('messagesSubscriptionData: ', messagesSubscriptionData);
+
+  const [getApiMessages, { loading, called, data: getMessagesData, refetch }] =
+    useLazyQuery(GET_MESSAGES);
+  const messages = getMessagesData?.getMessages ?? [];
+
   const getMessages = React.useCallback(
-    async (ids: number[]) => {
-      const res = await getApiMessages({ variables: { ids } });
+    async (dialogueId: number) => {
+      setActiveDialogueId(dialogueId);
+
+      const res = await getApiMessages({ variables: { dialogueId } });
 
       if (res.error) {
         // eslint-disable-next-line no-console
-        console.log('getMessages ERROR: ', res.error);
+        console.log(`getMessages(${dialogueId}) ERROR: `, res.error);
       }
     },
     [getApiMessages],
@@ -72,8 +74,7 @@ const Chat = () => {
               role='button'
               tabIndex={0}
               onClick={() => {
-                setActiveDialogueId(Number(dialogue.id));
-                return getMessages(dialogue.messagesIds);
+                getMessages(Number(dialogue.id));
               }}
             >
               <Dialogue dialogue={dialogue} />
@@ -96,7 +97,7 @@ const Chat = () => {
             </React.Fragment>
           )}
 
-          {called && <Input dialogueId={activeDialogueId} />}
+          {called && <Sender refetch={refetch} dialogueId={activeDialogueId} />}
         </Content>
       </Inner>
     </HomeSection>

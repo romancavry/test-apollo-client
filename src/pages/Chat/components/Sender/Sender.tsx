@@ -2,16 +2,18 @@ import * as React from 'react';
 import { useMutation } from '@apollo/client';
 
 import { POST_MESSAGE } from 'modules/messages';
+import type { RefetchQuery } from 'modules/common';
 
-import { Button, Input as InputComponent } from 'uikit/atoms';
+import { Button, Input } from 'uikit/atoms';
 
 import { Wrapper, inputStyle, buttonStyle } from './styled';
 
 interface InputProps {
+  refetch: RefetchQuery;
   dialogueId: number | null;
 }
 
-const Input: React.FC<InputProps> = ({ dialogueId }) => {
+const Sender: React.FC<InputProps> = ({ refetch, dialogueId }) => {
   const [postApiMessage] = useMutation(POST_MESSAGE);
 
   const [value, setValue] = React.useState('');
@@ -36,16 +38,13 @@ const Input: React.FC<InputProps> = ({ dialogueId }) => {
       },
     });
 
+    refetch();
     setValue('');
   };
 
   return (
     <Wrapper>
-      <InputComponent
-        className={inputStyle}
-        value={value}
-        onChange={onInputChange}
-      />
+      <Input className={inputStyle} value={value} onChange={onInputChange} />
 
       <Button className={buttonStyle} onClick={onSend}>
         SEND
@@ -54,4 +53,4 @@ const Input: React.FC<InputProps> = ({ dialogueId }) => {
   );
 };
 
-export default Input;
+export default Sender;
