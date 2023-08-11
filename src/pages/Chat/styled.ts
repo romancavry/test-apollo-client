@@ -46,3 +46,11 @@ export const Text = styled.p`
     text-transform: uppercase;
   }
 `;
+
+export const Content = styled.div`
+  padding: 20px;
+`;
+
+export const DialogueWrapper = styled.div`
+  cursor: pointer;
+`;

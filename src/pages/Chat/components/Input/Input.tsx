@@ -1,25 +1,38 @@
 import * as React from 'react';
 import { useMutation } from '@apollo/client';
 
-import { POST_MESSAGE } from 'modules/chat';
+import { POST_MESSAGE } from 'modules/messages';
 
-const Input: React.FC = () => {
-  const [postMessage] = useMutation(POST_MESSAGE);
+import { Button, Input as InputComponent } from 'uikit/atoms';
+
+import { Wrapper, inputStyle, buttonStyle } from './styled';
+
+interface InputProps {
+  dialogueId: number | null;
+}
+
+const Input: React.FC<InputProps> = ({ dialogueId }) => {
+  const [postApiMessage] = useMutation(POST_MESSAGE);
 
   const [value, setValue] = React.useState('');
 
-  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+  const onInputChange = (event: React.ChangeEvent) => {
+    const {
+      target: { value },
+    } = event as React.ChangeEvent<HTMLInputElement>;
+
+    setValue(value);
   };
 
-  const onSend = () => {
+  const onSend = async () => {
     if (!value) {
       return;
     }
 
-    postMessage({
+    await postApiMessage({
       variables: {
         text: value,
+        dialogueId,
       },
     });
 
@@ -27,12 +40,17 @@ const Input: React.FC = () => {
   };
 
   return (
-    <div>
-      <input value={value} onChange={onInputChange} />
-      <button onClick={onSend} type='button'>
+    <Wrapper>
+      <InputComponent
+        className={inputStyle}
+        value={value}
+        onChange={onInputChange}
+      />
+
+      <Button className={buttonStyle} onClick={onSend}>
         SEND
-      </button>
-    </div>
+      </Button>
+    </Wrapper>
   );
 };
 

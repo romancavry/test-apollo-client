@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import type { Message as MessageType } from 'modules/chat';
+import type { Message as MessageType } from 'modules/messages';
 
 interface MessageProps {
   message: MessageType;

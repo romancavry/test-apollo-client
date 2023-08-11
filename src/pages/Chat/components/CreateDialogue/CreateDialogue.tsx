@@ -5,7 +5,7 @@ import { CREATE_DIALOGUE } from 'modules/dialogues';
 
 import { Input } from 'uikit/atoms';
 
-import { Wrapper, Button } from './styled';
+import { Wrapper, Button, inputStyle, buttonStyle } from './styled';
 
 const CreateDialogue = () => {
   const [createDialogue] = useMutation(CREATE_DIALOGUE, {
@@ -32,9 +32,14 @@ const CreateDialogue = () => {
 
   return (
     <Wrapper>
-      <Input value={dialogueName} onChange={onChangeDialogueName} />
+      <Input
+        className={inputStyle}
+        value={dialogueName}
+        onChange={onChangeDialogueName}
+      />
 
       <Button
+        className={buttonStyle}
         variant='primary'
         onClick={onCreateDialogue}
         disabled={!dialogueName}
